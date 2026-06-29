@@ -36,6 +36,7 @@ def scrape():
             url = f"{base_url}&page={page}"
             try:
                 response = session.get(url, timeout=10)
+                response.raise_for_status()
                 soup = BeautifulSoup(response.text, "lxml")
                 products = soup.find_all("div", {"data-component-type": "s-search-result"})
                 for product in products:
