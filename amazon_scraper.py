@@ -8,12 +8,10 @@ def scrape():
     keyword2 = keyword1.replace(" ", "+")
     keyword3 = keyword1.replace(" ", "_")
 
-    page_start = input("Enter the starting page number: ")
-    page_end = input("Enter the ending page number: ")
-    page1 = int(page_start)
-    page2 = int(page_end)
+    start_page = int(input("Enter starting page number: "))
+    end_page = int(input("Enter ending page number: "))
 
-    if page1 > page2:
+    if start_page > end_page:
         print("Starting page cannot be greater than ending page.")
         return
 
@@ -32,7 +30,7 @@ def scrape():
         writer = csv.writer(f)
         writer.writerow(["Sr No.","Title","Price"])
         count = 0
-        for page in range(page1, page2 + 1):
+        for page in range(start_page, end_page + 1):
             url = f"{base_url}&page={page}"
             try:
                 response = session.get(url, timeout=10)
